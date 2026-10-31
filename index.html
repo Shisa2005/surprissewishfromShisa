@@ -1,10 +1,11 @@
+html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy 22nd Birthday Baberos Lukram! 🌹✨</title>
-  <!-- Canvas Confetti Library -->
+  <!-- Canvas Confetti Library for high-energy celebrations -->
   <script src="https://jsdelivr.net"></script>
   <style>
     :root {
@@ -12,6 +13,7 @@
       --rose-classic: #c9184a;
       --rose-bright: #ff4d6d;
       --rose-light: #fff0f2;
+      --gold: #ffb703;
     }
 
     body {
@@ -28,6 +30,7 @@
       position: relative;
     }
 
+    /* Floating Petals / Celebration Particles Background Overlay */
     .bg-overlay {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -73,78 +76,81 @@
       font-size: 1.2rem;
       color: #ffb3c1;
       font-style: italic;
-      margin-bottom: 25px;
+      margin-bottom: 35px;
       letter-spacing: 1px;
     }
 
-    .status-banner {
-      font-size: 1rem;
-      color: #ffccd5;
+    /* Interactive Microphone / Button status */
+    .mic-status {
+      font-size: 0.95rem;
+      color: #fff;
       font-weight: bold;
-      background: rgba(201, 24, 74, 0.3);
-      padding: 10px 20px;
+      background: linear-gradient(135deg, var(--rose-classic), var(--rose-bright));
+      padding: 12px 24px;
       border-radius: 50px;
+      cursor: pointer;
       display: inline-block;
-      margin-bottom: 25px;
-      border: 1px solid rgba(255, 77, 109, 0.2);
+      margin-bottom: 30px;
+      box-shadow: 0 5px 20px rgba(201, 24, 74, 0.4);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.2);
     }
 
+    .mic-status:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 77, 109, 0.6);
+    }
+
+    /* 22 Candle Layout */
     .cake-section {
-      margin: 20px 0;
+      margin: 30px 0;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
 
-    /* Multi-row layout for 22 compact candles */
-    .candles-grid {
+    .number-candles {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      max-width: 340px;
-      gap: 10px;
-      margin-bottom: -5px;
+      gap: 40px;
+      margin-bottom: -15px;
       z-index: 2;
-      padding: 0 10px;
     }
 
-    .candle-stick {
-      width: 8px;
-      height: 35px;
-      background: linear-gradient(to bottom, #ffb3c1, #ff4d6d);
-      border-radius: 2px 2px 0 0;
+    .candle-digit {
+      font-size: 6rem;
+      font-weight: 900;
+      font-family: 'Impact', 'Arial Black', sans-serif;
       position: relative;
+      line-height: 1;
+      background: linear-gradient(to bottom, #ffccd5, #ff4d6d, #c9184a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.7));
       cursor: pointer;
-      transition: transform 0.2s ease;
-    }
-
-    .candle-stick:hover {
-      transform: scale(1.1);
     }
 
     .flame {
-      width: 10px;
-      height: 16px;
-      background: radial-gradient(circle, #ffffff 10%, #ffea00 40%, #ff5a00 80%);
+      width: 20px;
+      height: 32px;
+      background: radial-gradient(circle, #ffffff 10%, #ffea00 40%, #ff5a00 80%, #ff0000 100%);
       border-radius: 50% 50% 20% 20%;
       position: absolute;
-      top: -15px;
+      top: -30px;
       left: 50%;
       transform: translateX(-50%);
       animation: flicker 0.5s infinite alternate;
-      box-shadow: 0 0 10px #ffea00;
-      transition: opacity 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 0 20px #ff5a00, 0 0 40px #ffea00;
+      transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s ease;
     }
 
     .flame.blown {
       opacity: 0;
       transform: translateX(-50%) scale(0);
-      pointer-events: none;
     }
 
     .cake-body {
-      width: 280px;
-      height: 80px;
+      width: 260px;
+      height: 90px;
       background: linear-gradient(to bottom, #ff85a1, #ff4d6d);
       border-radius: 16px 16px 0 0;
       border-bottom: 8px solid #a44a5f;
@@ -152,8 +158,130 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    }
+
+
+    @keyframes flicker {
+      0% { transform: translateX(-50%) scale(1) rotate(-2deg); }
+      100% { transform: translateX(-50%) scale(1.15) rotate(3deg); }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(-10px); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-overlay"></div>
+
+  <div class="container">
+    <div class="rose-header">🌹</div>
+    <h1>Happy 22nd Birthday,<br>Baberos Lukram!</h1>
+    <p class="subheading">Wishing you a beautiful blooming celebration ✨</p>
+
+    <!-- Interactive Candle Arena -->
+    <div class="cake-section">
+      <div class="mic-status" id="mic-btn" onclick="startListening()">🎤 Click to Activate Screen Blowing Mode</div>
+      
+      <div class="number-candles">
+        <div class="candle-digit">2<div class="flame"></div></div>
+        <div class="candle-digit">2<div class="flame"></div></div>
+      </div>
+      <div class="cake-body">🌹 🌹 🌹 🌹</div>
+    </div>
+
+    
+  </div>
+
+  <script>
+    let candlesLit = true;
+
+    // Fallback tap trigger
+    document.querySelectorAll('.candle-digit').forEach(candle => {
+      candle.addEventListener('click', () => {
+        if(candlesLit) extinguishCandles();
+      });
+    });
+
+    function startListening() {
+      const btn = document.getElementById('mic-btn');
+      
+      navigator.mediaDevices.getUserMedia({ audio: true, video: false })
+        .then(function(stream) {
+          btn.innerText = "💨 Now BLOW onto the screen to make a wish!";
+          btn.style.background = "linear-gradient(135deg, #2a9d8f, #264653)";
+
+          const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+          const analyser = audioContext.createAnalyser();
+          const microphone = audioContext.createMediaStreamSource(stream);
+          const javascriptNode = audioContext.createScriptProcessor(2048, 1, 1);
+
+          analyser.smoothingTimeConstant = 0.75;
+          analyser.fftSize = 1024;
+
+          microphone.connect(analyser);
+          analyser.connect(javascriptNode);
+          javascriptNode.connect(audioContext.destination);
+
+          javascriptNode.onaudioprocess = function() {
+            const array = new Uint8Array(analyser.frequencyBinCount);
+            analyser.getByteFrequencyData(array);
+            let values = 0;
+
+            for (let i = 0; i < array.length; i++) {
+              values += array[i];
+            }
+
+            const average = values / array.length;
+
+            // Audio peak trigger threshold 
+            if (average > 60 && candlesLit) {
+              extinguishCandles();
+              stream.getTracks().forEach(track => track.stop()); // close microphone cleanly
+            }
+          };
+        })
+        .catch(function(err) {
+          btn.innerText = "✨ Tap the glowing 22 candles directly!";
+        });
+    }
+
+    function extinguishCandles() {
+      candlesLit = false;
+      document.querySelectorAll('.flame').forEach(flame => flame.classList.add('blown'));
+      
+      const btn = document.getElementById('mic-btn');
+      btn.innerText = "🎉 Time to Celebrate! ❤️";
+      btn.style.background = "linear-gradient(135deg, #d90429, #ef233c)";
+
+      // Elite celebration explosion combining rose hues and golden fireworks
+      var duration = 5 * 1000;
+      var end = Date.now() + duration;
+
+      (function frame() {
+        confetti({
+          particleCount: 6,
+          angle: 60,
+          spread: 60,
+          origin: { x: 0 },
+          colors: ['#ff4d6d', '#ff758c', '#ffb703', '#ffffff', '#ff0a54']
+        });
+        confetti({
+          particleCount: 6,
+          angle: 120,
+          spread: 60,
+          origin: { x: 1 },
+          colors: ['#ff4d6d', '#ff758c', '#ffb703', '#ffffff', '#ff0a54']
+        });
+
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      }());
     }
 
     .reveal-section {
